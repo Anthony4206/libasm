@@ -2,10 +2,25 @@ section .text
 global ft_strcmp
 
 ft_strcmp:
-	xor	rdi, rdi
-	xor	rsi, rsi
+	xor	rax, rax
+	xor	rdx, rdx
 
 .loop:
-	cmp []
+	mov 	al, byte [rdi]
+	mov	dl, byte [rsi]
+	cmp	rax, rdx
+	je	.next
 
-done_
+	sub	rax, rdx
+	ret
+
+.next:
+	test	al, al
+	jz	.end_cmp
+
+	inc	rdi
+	inc	rsi
+	jmp	.loop
+
+.end_cmp:
+	ret

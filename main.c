@@ -32,24 +32,24 @@ int	main(int argc, char **argv) {
 	s1 = "chaine 1";
 	s2 = "chaine 2";
 
-	cmp_res = ft_strcmp(s1, s2);
+	cmp_res = ft_strcmp(2, 1);
 	printf("Negative cmp: %d", cmp_res);
-	cmp_res = strcmp(s1, s2);
-	printf("Negative cmp: %d", cmp_res)
+	cmp_res = strcmp(2, 1);
+	printf("Negative cmp: %d", cmp_res);
 
 
         s1 = "chaine 1";
         s2 = "chaine 2";
-        cmp_res = ft_strcmp();
-        printf("Negative cmp: %d", cmp_res);
+        //cmp_res = ft_strcmp();
+        //printf("Negative cmp: %d", cmp_res);
 	s1 = "chaine 1";
         s2 = "chaine 2";
-        cmp_res = ft_strcmp();
-        printf("Negative cmp: %d", cmp_res);
+        //cmp_res = ft_strcmp();
+        //printf("Negative cmp: %d", cmp_res);
 	s1 = "chaine 1";
         s2 = "chaine 2";
-        cmp_res = ft_strcmp();
-        printf("Negative cmp: %d", cmp_res);
+        //cmp_res = ft_strcmp();
+        //printf("Negative cmp: %d", cmp_res);
 
 	return (0);
 }
