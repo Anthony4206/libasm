@@ -11,6 +11,7 @@ ft_atoi_base:
 	mov	rdi, rsi
 	call	ft_strlen
 	pop	rdi
+	mov	r10, rax
 	cmp	rax, 2
 	jl	.ret_zero
 	mov	rdx, rsi
@@ -38,12 +39,58 @@ ft_atoi_base:
 	jnz	.loop_char
 	inc	rsi
 	jmp	.loop_char_base
+
+.inc_whitespace:
+	inc	rdi
 	
 .atoi:
+	mov	bl, [rdi]
+	cmp	bl, 32
+	jle	.inc_whitespace
 	mov	rsi, rdx
-	mov	rax, 1
-	ret
+	xor	rdx, rdx
+	xor	rax, rax
+	mov	r9, 1
+	cmp	bl, '-'
+	je	.neg
+	cmp	bl, '+'
+	je	.inc_str
+	jmp	.add_basetoi
+
+.neg:
+	neg	r9
+
+.inc_str:
+	inc	rdi
+
+.add_basetoi:
+	mov	r8, rsi
+	mov	rcx, r10
+	mov	dl, [rdi]
+	cmp	dl, 0
+	jz	.done
+
+.is_base:
+        mov     bl, [r8]
+        cmp     dl, bl
+        je      .add_value
+        test    bl, bl
+        jz	.done
+        inc     r8
+	dec	rcx
+        jmp     .is_base
+
+.add_value:
+	imul	rax, r10
+	sub	rcx, r10
+	neg	rcx
+	add	rax, rcx
+	jmp	.inc_str
 
 .ret_zero:
 	xor	rax, rax
+	ret
+
+.done:
+	imul	rax, r9
 	ret
