@@ -1,55 +1,41 @@
 #include <stdio.h>
 #include <string.h>
 
-extern size_t	ft_strlen(const char *s);
-extern char	*ft_strcpy(char *dest, const char *src);
-extern int	ft_strcmp(const char *s1, const char *s2);
+size_t ft_strlen(const char *str);
+char *ft_strcpy(char *dest, const char *src);
 
-int	main(int argc, char **argv) {
-	char	*msg;
-	int	len;
-	char	my_cpy[50];
-	char	*adr_cpy;
+int main() {
+    printf("Test 1: Comparing strlen and ft_strlen\n");
 
-	msg = "Hellooo World!!!";
-	len = ft_strlen(msg);
-	printf("Length: %d\n", len);
+    const char *test_str = "Hello, World!";
 
-	adr_cpy = strcpy(my_cpy, msg);
-        printf("The copy: %s\n", my_cpy);
-        printf("The address copy: %p\n", (void*)adr_cpy);
-        printf("The copy by the adr_ret: %s\n", adr_cpy);
+    size_t len = strlen(test_str);
+    printf("ft_strlen result: %zu\n", len);
+    len = ft_strlen(test_str);
+    printf("strlen result: %zu\n", len);
 
-	adr_cpy = ft_strcpy(my_cpy, msg);
-	printf("The copy: %s\n", my_cpy);
-        printf("The address copy: %p\n", (void*)adr_cpy);
-        printf("The copy by the adr_ret: %s\n", adr_cpy);
+    printf("\nTest 2: Comparing strcpy and ft_strcpy\n");
+    
+    char src1[] = "Hello";
+    char dest1[20];
+    char dest2[20];
 
-	int	cmp_res;
-	char	*s1;
-	char	*s2;
+    strcpy(dest1, src1);
+    printf("strcpy result: %s\n", dest1);
+    ft_strcpy(dest2, src1);
+    printf("ft_strcpy result: %s\n", dest2);
 
-	s1 = "chaine 1";
-	s2 = "chaine 2";
+    char src2[] = "";
+    strcpy(dest1, src2);
+    printf("\nstrcpy result with empty string: %s\n", dest1);
+    ft_strcpy(dest2, src2);
+    printf("ft_strcpy result with empty string: %s\n", dest2);
 
-	cmp_res = ft_strcmp(2, 1);
-	printf("Negative cmp: %d", cmp_res);
-	cmp_res = strcmp(2, 1);
-	printf("Negative cmp: %d", cmp_res);
+    char src3[] = "A very long string to test.";
+    strcpy(dest1, src3);
+    printf("\nstrcpy result with long string: %s\n", dest1);
+    ft_strcpy(dest2, src3);
+    printf("ft_strcpy result with long string: %s\n", dest2);
 
-
-        s1 = "chaine 1";
-        s2 = "chaine 2";
-        //cmp_res = ft_strcmp();
-        //printf("Negative cmp: %d", cmp_res);
-	s1 = "chaine 1";
-        s2 = "chaine 2";
-        //cmp_res = ft_strcmp();
-        //printf("Negative cmp: %d", cmp_res);
-	s1 = "chaine 1";
-        s2 = "chaine 2";
-        //cmp_res = ft_strcmp();
-        //printf("Negative cmp: %d", cmp_res);
-
-	return (0);
+    return 0;
 }
